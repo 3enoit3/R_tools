@@ -24,6 +24,7 @@ print(FunctionWithMultipleReturns(2))
 # Note: a function is a variable like any other: if you change the code of the function, you need to 
 # re-run the function declaration in R
 
+
 # Strings
 a_string <- paste("string1", 12, "string2") # default separator is space
 print(a_string)
@@ -37,6 +38,7 @@ cat("string1", 12, "string2", "\n", sep="") # no separator
 # if you don't put "\n" (new line character) at the end, it will stay on the same line
 cat("when there is no new line")
 cat("it is less nice")
+
 
 # Vectors
 # a vector is 1D collection of objects
@@ -62,6 +64,7 @@ for (item in a_vector)
 a_vector <- c(a_vector, "item3")
 print(a_vector)
 
+
 # Lists
 # a list is a 1D collection of objects
 # it can contain anything, in any combination
@@ -73,6 +76,7 @@ a_list <- list(1, "item1")
 a_named_list <- list("my_quantity"=1, "my_name"="item1")
 
 # accessing an element with []: the name and the value are returned
+# https://www.dataanalytics.org.uk/r-object-elements-brackets-double-brackets-and/ is a good explanation
 print(a_list[2]) # returns [[1]], "item1"
 print(a_named_list[2]) # returns $my_name, "item1"
 
@@ -97,14 +101,19 @@ for (item in a_list)
 a_list <- append(a_list, list("item3"))
 print(a_list)
 
-# Dataframes
 
-#bindlist()
+# Dataframes
+# a data.frame is 2D collection of objects
+a_df <- data.frame()
+
+# Make one data.frame from a list by appending all rows 
+a_single_df <- rbindlist(a_list_of_dfs)
+
 
 # Loops
-items <- c(1, 2, 3)
 
 # stop the loop
+items <- c(1, 2, 3)
 for (item in items) {
     print(item)
     if (item == 2) {
@@ -125,6 +134,7 @@ stop("we want to stop the execution")
 print("this is executed")
 
 # skip the current item
+items <- c(1, 2, 3)
 for (item in items) {
     print(item)
     if (item == 2) {
@@ -133,12 +143,14 @@ for (item in items) {
     cat(item, "was executed\n")
 }
 
+
 ##### Advanced #####
 
 ### Use lists to create "objects"
 my_record <- list(name="reader", file="c:/data.csv", data=data.frame())
 # my_record$data <- read_csv(my_record$file)
 cat(my_record$name, "contains", nrow(my_record$data), "rows")
+
 
 ### Transform collections by applying functions
 AddThree <- function(number) {
